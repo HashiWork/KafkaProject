@@ -11,7 +11,7 @@ producer = KafkaProducer(bootstrap_servers='localhost:9092',
                          value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 def fetch_data_from_server(filename):
-    url = f"http://172.16.12.92/{filename}"
+    url = f"http://192.168.1.43/meteo/{filename}"
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -22,7 +22,7 @@ def fetch_data_from_server(filename):
 def filename_to_timestamp(filename):
     # Extraire l'heure du nom du fichier et la transformer
     file_name = Path(filename).stem
-    file_hour = file_name[13:21]
+    file_hour = file_name[13:26]
     return file_hour
 
 def calculate_averages(data):
@@ -36,7 +36,7 @@ def calculate_averages(data):
 
 def run_producer():
     while True:
-        filename = f"weather_data_08-52-02.json"
+        filename = f"weather_data_22-01-2024_14.json"
         data = fetch_data_from_server(filename)
 
         if data:
