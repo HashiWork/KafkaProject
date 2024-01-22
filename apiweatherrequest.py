@@ -26,10 +26,10 @@ try:
         # Charger les données JSON à partir de la réponse
         data = response.json()
         
-        # Obtenir l'heure actuelle au format HH-MM-SS
-        current_time = datetime.now().strftime('%H-%M-%S')
+        # Obtenir la date et l'heure actuelles au format JJ-MM-AAA_HH
+        current_time = datetime.now().strftime('%d-%m-%Y_%H')
         
-        # Définir le chemin du fichier JSON avec le répertoire "/temp/datakafka/"
+        # Définir le chemin du fichier JSON avec le format de date/heure modifié
         json_file_path = f'{output_directory}weather_data_{current_time}.json'
         
         # Enregistrer les données dans le fichier JSON
